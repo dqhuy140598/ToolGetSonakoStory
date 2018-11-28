@@ -12,11 +12,21 @@ class SonakoStory
 {
     private $database;
     private $url;
+
+    /**
+     * SonakoStory constructor. phương thức khởi tạo cho class SonakoStory
+     * @param $url  url của trang web Sonako
+     * @param $database là cơ sở dữ liệu dùng để lưu trữ truyện
+     */
     function __construct($url,$database)
     {
         $this->url = $url;
         $this->database = $database;
     }
+
+    /** phương thức lấy thông tin của truyện(tên, số chương) rồi chuyển vào trong database
+     * @return bool trả về true nếu lấy thành công và false nếu thất bại
+     */
     function getInforStory(){
         try {
             $html = loadURL($this->url);
@@ -34,9 +44,17 @@ class SonakoStory
         }
         return false;
     }
+
+    /** phương thức lấy database lưu truyện của Sonako
+     * @return PDO trả về database chưa truyện của Sonako
+     */
     function getDataBase (){
         return $this->database;
     }
+
+    /** phương thức lấy nội dung của truyện rồi chuyển vào trong database
+     * @return bool trả về true nếu lấy thành công và false nếu thất bại
+     */
     function getAllContentStory(){
         try {
             $html = loadURL($this->url);
